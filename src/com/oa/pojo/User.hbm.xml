@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.oa.pojo">
+
+	<class name="User" table="USER">
+	    <id name="id" type="java.lang.Long">
+			<column name="ID" />
+            <generator class="native"/>
+		</id>
+		<!-- <id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			  自动生成的序列id会覆盖页面添加的id
+			<generator class="sequence">
+				<param name="sequence">SEQ_USERID</param>
+			</generator> 
+		</id>  -->
+		<property name="loginName" type="java.lang.String">
+			<column length="50" name="LOGINNAME" />
+		</property>
+		<property name="password" type="java.lang.String">
+			<column length="100" name="PASSWORD" />
+		</property>
+		<property name="realName" type="java.lang.String">
+			<column length="50" name="REALNAME" />
+		</property>
+		<property name="gender" type="java.lang.String">
+			<column length="50" name="GENDER" />
+		</property>
+		<property name="phoneNumber" type="java.lang.String">
+			<column length="50" name="PHONENUMBER" />
+		</property>
+		<property name="email" type="java.lang.String">
+			<column length="100" name="EMAIL" />
+		</property>
+		<property name="age" type="java.lang.Integer">
+			<column length="50" name="AGE" />
+		</property>
+		<property name="imageAddress" type="java.lang.String">
+			<column length="100" name="IMAGEADDRESS" />
+		</property>
+		<property name="education" type="java.lang.String">
+			<column length="50" name="EDUCATION" />
+		</property>
+		<property name="note" type="java.lang.String">
+			<column length="50" name="NOTE" />
+		</property>
+		<many-to-one name="department" class="Department" column="DEPARTMENTID" lazy="false">
+		</many-to-one>
+		<set name="roles" table="USER_ROLE" lazy="false">
+			<key column="USERID"></key>
+			<many-to-many class="Role" column="ROLEID"></many-to-many>
+		</set>
+		
+	</class>
+
+</hibernate-mapping>

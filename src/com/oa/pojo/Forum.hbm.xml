@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.oa.pojo">
+
+	<class name="Forum" table="FORUM">
+		 <id name="id" type="java.lang.Long">
+			<column name="ID" />
+            <generator class="native"/>
+		</id>
+		<property name="name" type="java.lang.String">
+			<column length="50" name="NAME" />
+		</property>
+		<property name="note" type="java.lang.String">
+			<column length="200" name="NOTE" />
+		</property>
+		<property name="imageName" type="java.lang.String">
+			<column length="50" name="IMAGENAME" />
+		</property>
+		<property name="position" type="java.lang.Integer">
+			<column length="50" name="POSITION" />
+		</property>
+		<property name="topicCount" type="java.lang.Integer">
+			<column length="50" name="TOPICCOUNT" />
+		</property>
+		<property name="articleCount" type="java.lang.Integer">
+			<column length="50" name="ARTICLECOUNT" />
+		</property>
+		
+		<!-- topics属性，本类与Topic的一对多 -->
+		<set name="topics">
+			<key column="FORUMID"></key>
+			<one-to-many class="Topic"/>
+		</set>
+
+		<!-- lastTopic属性，本类与Topic的一对一     对应数据库中unique-->
+		<many-to-one name="lastTopic" class="Topic" column="LASTTOPICID" unique="true"></many-to-one>
+		
+	</class>
+
+</hibernate-mapping>

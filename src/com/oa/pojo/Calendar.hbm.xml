@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.oa.pojo">
+
+	<class name="Calendar" table="CALENDAR">
+		<id name="id" type="integer">
+			<column name="ID" />
+            <generator class="native"/>
+		</id>
+		<property name="title" type="java.lang.String">
+			<column length="200" name="TITLE" />
+		</property>
+		<property name="start" type="java.lang.String">
+			<column length="50" name="START" />
+		</property>
+		<property name="end" type="java.lang.String">
+			<column length="50" name="END" />
+		</property>
+		<property name="allDay" type="integer">
+			<column length="50" name="ALLDAY" />
+		</property>
+		<property name="color" type="java.lang.String">
+			<column length="50" name="COLOR" />
+		</property>
+		
+		<many-to-one name="user" class="User" column="userId"></many-to-one>
+	</class>
+	
+</hibernate-mapping>

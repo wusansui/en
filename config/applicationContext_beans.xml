@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="    
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"> 
+
+	<!-- 安装bean -->
+	<bean id="installer" class="com.oa.install.Installer">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+		<!-- 权限 -->
+	<bean id="privilegeDao" class="com.oa.dao.impl.PrivilegeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="privilegeService" class="com.oa.service.impl.PrivilegeServiceImpl">
+		<property name="privilegeDao" ref="privilegeDao"></property>
+	</bean>
+	
+		<!-- 用户 -->
+	<bean id="userDao" class="com.oa.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="userService" class="com.oa.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="userAction" scope="prototype" class="com.oa.action.UserAction">
+	    <property name="userService" ref="userService"></property> 
+	    <property name="departmentService" ref="departmentService"></property>
+	    <property name="roleService" ref="roleService"></property>
+	</bean>
+	
+	<!-- 主页 -->
+	<bean id="homeAction" scope="prototype" class="com.oa.action.HomeAction">
+	</bean>
+	
+	<!-- 用户登录状态管理 -->
+	<bean id="userManageAction" scope="prototype" class="com.oa.action.UserManageAction">
+	</bean>
+	
+		<!-- 部门 -->
+	<bean id="departmentDao" class="com.oa.dao.impl.DepartmentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="departmentService" class="com.oa.service.impl.DepartmentServiceImpl">
+		<property name="departmentDao" ref="departmentDao"></property>
+	</bean>
+	<bean id="departmentAction" scope="prototype" class="com.oa.action.DepartmentAction">
+	    <property name="departmentService" ref="departmentService"></property>
+	    <property name="userService" ref="userService"></property>
+	</bean>
+	
+		<!-- 岗位-->
+	<bean id="roleDao" class="com.oa.dao.impl.RoleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="roleService" class="com.oa.service.impl.RoleServiceImpl">
+		<property name="roleDao" ref="roleDao"></property>
+	</bean>
+	<bean id="roleAction" scope="prototype" class="com.oa.action.RoleAction">
+	    <property name="roleService" ref="roleService"></property>
+	    <property name="privilegeService" ref="privilegeService"></property>
+	</bean>
+	
+		<!-- 论坛  版块管理-->
+	<bean id="forumManageDao" class="com.oa.dao.impl.ForumManageDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="forumManageService" class="com.oa.service.impl.ForumManageServiceImpl">
+		<property name="forumManageDao" ref="forumManageDao"></property>
+	</bean>
+	<bean id="forumManageAction" scope="prototype" class="com.oa.action.ForumManageAction">
+	    <property name="forumManageService" ref="forumManageService"></property>
+	</bean>
+
+		<!-- 论坛  版块显示 -->
+	<bean id="forumAction" scope="prototype" class="com.oa.action.ForumAction">
+	    <property name="forumManageService" ref="forumManageService"></property>
+	    <property name="topicService" ref="topicService"></property>
+	</bean>
+	
+		<!-- 论坛    主题管理-->
+	<bean id="topicAction" scope="prototype" class="com.oa.action.TopicAction">
+	    <property name="topicService" ref="topicService"></property>
+	    <property name="forumManageService" ref="forumManageService"></property>
+	    <property name="replyService" ref="replyService"></property>
+	</bean>
+	<bean id="topicService" class="com.oa.service.impl.TopicServiceImpl">
+		<property name="topicDao" ref="topicDao"></property>
+	</bean>
+	<bean id="topicDao"  class="com.oa.dao.impl.TopicDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+		<!-- 论坛    回复管理-->
+	<bean id="replyAction" scope="prototype" class="com.oa.action.ReplyAction">
+	    <property name="replyService" ref="replyService"></property>
+	    <property name="topicService" ref="topicService"></property>
+	</bean>
+	<bean id="replyService" class="com.oa.service.impl.ReplyServiceImpl">
+		<property name="replyDao" ref="replyDao"></property>
+	</bean>
+	<bean id="replyDao"  class="com.oa.dao.impl.ReplyDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 请假管理 -->
+	<bean id="leaveApplyAction" scope="prototype" class="com.oa.action.LeaveApplyAction">
+	    <property name="processEngine" ref="processEngine"></property>
+	    <property name="leaveApplyService" ref="leaveApplyService"></property>
+	</bean>
+	<bean id="leaveApplyService" class="com.oa.service.impl.LeaveApplyServiceImpl">
+		<property name="leaveApplyDao" ref="leaveApplyDao"></property>
+	</bean>
+	<bean id="leaveApplyDao"  class="com.oa.dao.impl.LeaveApplyDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 发送邮件 -->
+	<bean id="sendMailAction" scope="prototype" class="com.oa.action.SendMailAction">
+	    <property name="sendMailService" ref="sendMailService"></property>
+	</bean>
+	<bean id="sendMailService" class="com.oa.service.impl.SendMailServiceImpl">
+		<property name="sendMailDao" ref="sendMailDao"></property>
+	</bean>
+	<bean id="sendMailDao"  class="com.oa.dao.impl.SendMailDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 个人日程管理-->
+	<bean id="calendarAction" scope="prototype" class="com.oa.action.CalendarAction">
+	    <property name="calendarService" ref="calendarService"></property>
+	</bean>
+	<bean id="calendarService" class="com.oa.service.impl.CalendarServiceImpl">
+		<property name="calendarDao" ref="calendarDao"></property>
+	</bean>
+	<bean id="calendarDao"  class="com.oa.dao.impl.CalendarDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+</beans>  

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="profiler.settings.instrument.empty.methods">true</entry>
+<entry key="ProfilerCPUSettings_profile_runnables">true</entry>
+<entry key="profiler.settings.n.profiled.threads.limit">32</entry>
+<entry key="ProfilerCPUSettings_filter_type">2</entry>
+<entry key="profiler.settings.obj.alloc.stack.sampling.depth">-1</entry>
+<entry key="profiler.settings.instrument.method.invoke">true</entry>
+<entry key="profiler.settings.instr.scheme">1</entry>
+<entry key="ProfilerMemorySettings_track_every">10</entry>
+<entry key="ProfilerMemorySettings_mode">4</entry>
+<entry key="ProfilerCPUSettings_root_classes">com.oa.action.**
+com.oa.dao.**
+com.oa.filter.**
+com.oa.install.**
+com.oa.interceptor.**
+com.oa.listener.**
+com.oa.pojo.**
+com.oa.service.**
+com.oa.test.**
+com.oa.util.**
+org.apache.struts2.views.jsp.ui.**
+</entry>
+<entry key="ProfilerCPUSettings_filter_value">com.oa.action.*,&#13;
+com.oa.dao.*,&#13;
+com.oa.filter.*,&#13;
+com.oa.install.*,&#13;
+com.oa.interceptor.*,&#13;
+com.oa.listener.*,&#13;
+com.oa.pojo.*,&#13;
+com.oa.service.*,&#13;
+com.oa.test.*,&#13;
+com.oa.util.*,&#13;
+org.apache.struts2.views.jsp.ui.*</entry>
+<entry key="profiler.settings.istrument.getter.setter.methods">true</entry>
+<entry key="myeclipse.profiling.mode">0</entry>
+<entry key="ProfilerMemorySettings_stacktraces">-1</entry>
+<entry key="profiler.settings.sampling.interval">10</entry>
+<entry key="profiler.settings.cpu.profiling.type">0</entry>
+</properties>

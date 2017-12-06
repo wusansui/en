@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.oa.pojo">
+
+	<class name="MyMail" table="MYMAIL">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+            <generator class="native"/>
+		</id>
+		<property name="userName" type="java.lang.String">
+			<column length="50" name="USERNAME" />
+		</property>
+		<property name="password" type="java.lang.String">
+			<column length="50" name="PASSWORD" />
+		</property>
+		<property name="server" type="java.lang.String">
+			<column length="50" name="SERVER" />
+		</property>
+		<property name="mailFrom" type="java.lang.String">
+			<column length="50" name="MAILFROM" />
+		</property>
+		<property name="mailTo" type="java.lang.String">
+			<column length="50" name="MAILTO" />
+		</property>
+		<property name="subject" type="java.lang.String">
+			<column length="50" name="SUBJECT" />
+		</property>
+		<property name="content" type="java.lang.String">
+			<column length="50" name="CONTENT" />
+		</property>
+		<property name="date" type="timestamp">
+			<column length="50" name="DATE" />
+		</property>
+		
+		<many-to-one name="user" class="User" column="userId"></many-to-one>
+	</class>
+	
+</hibernate-mapping>

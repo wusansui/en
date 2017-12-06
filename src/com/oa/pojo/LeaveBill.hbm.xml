@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.oa.pojo">
+
+	<class name="LeaveBill" table="LEAVEBILL">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+            <generator class="native"/>
+		</id>
+		<property name="days" type="java.lang.Integer">
+			<column length="50" name="DAYS" />
+		</property>
+		<property name="content" type="java.lang.String">
+			<column length="200" name="CONTENT" />
+		</property>
+		<property name="leaveDate" type="timestamp">
+			<column length="200" name="LEAVEDATE" />
+		</property>
+		<property name="note" type="java.lang.String">
+			<column length="200" name="NOTE" />
+		</property>
+		<property name="state" type="java.lang.Integer">
+			<column length="50" name="STATE" />
+		</property>
+		
+		<many-to-one name="user" class="User" column="userId"></many-to-one>
+	</class>
+	
+</hibernate-mapping>
